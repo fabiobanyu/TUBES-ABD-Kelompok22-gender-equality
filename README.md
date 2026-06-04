@@ -1,7 +1,7 @@
-# 🌍 Analisis Kesetaraan Gender Global (SDG 5) dengan K-Means Clustering
+# 🌍 Analisis Klaster Kesetaraan Gender (SDG 5) Berbasis PySpark K-Means dengan Pendekatan Medallion Architecture
 
 > **Tugas Besar Mata Kuliah Big Data**  
-> Mengelompokkan 212 negara berdasarkan indikator kesetaraan gender menggunakan Apache Spark dan K-Means Clustering
+> Mengelompokkan 212 negara berdasarkan indikator kesetaraan gender menggunakan Apache Spark (PySpark) dan K-Means Clustering
 
 ---
 
