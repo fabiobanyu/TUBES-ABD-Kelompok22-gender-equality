@@ -159,20 +159,15 @@ Untuk keperluan visualisasi 2D, 4 fitur direduksi menjadi 2 komponen utama:
 
 Proyek menggunakan **Medallion Architecture** (Bronze → Silver → Gold) yang merupakan best practice dalam data engineering:
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                     MEDALLION ARCHITECTURE                         │
-│                                                                     │
-│  ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌───────────┐  │
-│  │  📁 RAW  │────▶│ 🥉BRONZE │────▶│ 🥈SILVER │────▶│  🥇 GOLD  │  │
-│  │  (CSV)   │     │(Parquet) │     │(Cleaned) │     │(Clustered)│  │
-│  └──────────┘     └──────────┘     └──────────┘     └───────────┘  │
-│                                                           │        │
-│                                                     ┌─────▼─────┐  │
-│                                                     │    📊     │  │
-│                                                     │   VIZ     │  │
-│                                                     └───────────┘  │
-└─────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Medallion Architecture
+        direction LR
+        A["📁 RAW<br>(CSV)"] --> B["🥉 BRONZE<br>(Parquet)"]
+        B --> C["🥈 SILVER<br>(Cleaned)"]
+        C --> D["🥇 GOLD<br>(Clustered)"]
+        D --> E["📊 VIZ"]
+    end
 ```
 
 | Layer | Notebook | Input | Output | Proses |
@@ -186,27 +181,21 @@ Proyek menggunakan **Medallion Architecture** (Bronze → Silver → Gold) yang 
 
 ## 🖥️ Arsitektur Infrastruktur
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    DOCKER COMPOSE                        │
-│                                                          │
-│  ┌──────────────────────────────────────────────────┐    │
-│  │          Jupyter PySpark Notebook                 │    │
-│  │          (quay.io/jupyter/pyspark-notebook)       │    │
-│  │          Port: 8888                               │    │
-│  │          Mode: Spark local[*]                     │    │
-│  └──────────────────────────────────────────────────┘    │
-│                                                          │
-│  ┌───────────────┐  ┌──────────┐  ┌──────────┐         │
-│  │ Spark Master  │  │ Worker 1 │  │ Worker 2 │         │
-│  │  Port: 8080   │  │  2GB/2C  │  │  2GB/2C  │         │
-│  └───────────────┘  └──────────┘  └──────────┘         │
-│                                                          │
-│  ┌──────────────────────────────────────────────────┐    │
-│  │              Volume: /data                        │    │
-│  │   raw/ → bronze/ → silver/ → gold/               │    │
-│  └──────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Docker Compose
+        direction TD
+        J["Jupyter PySpark Notebook<br>quay.io/jupyter/pyspark-notebook<br>Port: 8888<br>Mode: Spark local[*]"]
+        
+        subgraph Spark Cluster
+            direction LR
+            M["Spark Master<br>Port: 8080"]
+            W1["Worker 1<br>2GB / 2C"]
+            W2["Worker 2<br>2GB / 2C"]
+        end
+        
+        V[("Volume: /data<br>raw/ → bronze/ → silver/ → gold/")]
+    end
 ```
 
 | Komponen | Image | Fungsi |
