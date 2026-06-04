@@ -428,11 +428,11 @@ Radar chart menunjukkan perbedaan profil yang jelas antar cluster. Cluster Progr
 
 | No | Nama | NIM | Kontribusi |
 |----|------|-----|------------|
-| 1 | [Nama 1] | [NIM] | Infrastruktur & Bronze Layer |
-| 2 | [Nama 2] | [NIM] | Silver Layer (Preprocessing) |
-| 3 | [Nama 3] | [NIM] | Gold Layer (Clustering) |
-| 4 | [Nama 4] | [NIM] | Visualisasi & Analisis |
-| 5 | [Nama 5] | [NIM] | Dokumentasi & Evaluasi |
+| 1 | Afifah Fauziah | 123450002 | Infrastruktur & Bronze Layer |
+| 2 | Adisty Syawalda Ariyanto | 121450136 | Silver Layer (Preprocessing) |
+| 3 | Muhammad Ridwan | 123450091 | Gold Layer (Clustering) |
+| 4 | Fathinah Nur Azizah | 123450072 | Visualisasi & Analisis |
+| 5 | Fabio Banyu Cyto | 123450104 | Perancang Arsitektur, Evaluasi |
 
 ---
 
